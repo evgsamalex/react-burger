@@ -1,0 +1,15 @@
+.navbar{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.navbar__item{
+  float: left;
+}
+
+.navbar__item:last-child{
+  float: right;
+}
