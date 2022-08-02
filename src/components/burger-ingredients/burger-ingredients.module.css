@@ -1,16 +1,20 @@
-.constructor{
+.ingredients {
   display: flex;
   flex-direction: column;
   position: relative;
   height: 100%;
 }
 
-.container__tab{
+.ingredients__tab {
   display: flex;
 }
 
+.container {
+  height: 100%;
+  position: relative;
+}
 
-.container__ingredients{
+.container__ingredients {
   position: absolute;
   left: 0;
   top: 0;
@@ -23,13 +27,13 @@
   padding: 0;
 }
 
-.category{
+.category {
   display: flex;
   flex-direction: column;
   margin-left: 0;
 }
 
-.category__items{
+.category__items {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 24px;

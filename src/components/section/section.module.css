@@ -1,5 +1,4 @@
 .section {
-  border: 2px solid var(--colors-interface-accent);
   border-top: 0;
   max-width: 600px;
   width: 100%;

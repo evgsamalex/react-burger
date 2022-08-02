@@ -6,8 +6,8 @@ import styles from './icon-link.module.css';
 const IconLink = props => {
 
   const getIcon = (icon, isActive) => {
-    const type = isActive ? 'primary':'secondary'
-    switch (icon){
+    const type = isActive ? 'primary' : 'secondary'
+    switch (icon) {
       case 'Burger':
         return <BurgerIcon type={type}/>
       case 'List':
@@ -20,13 +20,17 @@ const IconLink = props => {
   }
 
   const style = [styles.iconlink, 'pl-5 pt-4 pr-5 pb-4 text_type_main-default']
-  if(!props.isActive){
+  if (!props.isActive) {
     style.push(styles.iconlink_inactive)
   }
 
+  if (props.className) {
+    style.push(props.className)
+  }
+
   return (
-    <a href={props.href} className={style.join(' ')} style={props.style}>
-      {getIcon(props.icon,props.isActive)}
+    <a href={props.href} className={style.join(' ')}>
+      {getIcon(props.icon, props.isActive)}
       {props.text}
     </a>
   );
@@ -34,10 +38,10 @@ const IconLink = props => {
 
 IconLink.propTypes = {
   href: PropTypes.string,
-  icon: PropTypes.oneOf(['Burger', 'List', 'Profile'])  ,
+  icon: PropTypes.oneOf(['Burger', 'List', 'Profile']),
   text: PropTypes.string,
   isActive: PropTypes.bool,
-  style: PropTypes.object
+  className: PropTypes.string
 };
 
 export default IconLink;

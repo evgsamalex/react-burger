@@ -19,7 +19,7 @@ const BurgerIngredient = ({ingredient}) => {
         <span className='text text_type_digits-default'>{ingredient.price}</span>
       <CurrencyIcon type='primary'/>
       </div>
-      <span className='text text_type_main-default mt-1' style={{textAlign:'center', minHeight:'48px'}}>{ingredient.name}</span>
+      <span className={styles.card__name + ' text text_type_main-default mt-1'}>{ingredient.name}</span>
     </div>
   );
 };

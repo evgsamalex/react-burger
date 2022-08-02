@@ -1,4 +1,4 @@
-.constructor{
+.ingredients {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -7,13 +7,13 @@
   align-items: flex-end;
 }
 
-.constructor__items{
+.constructor__items {
   height: 100%;
   position: relative;
   width: 100%;
 }
 
-.constructor__list{
+.constructor__list {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -28,14 +28,26 @@
   bottom: 0;
 }
 
-.total{
+.constructor__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.constructor__lock {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.total {
   display: flex;
   align-items: center;
   align-self: flex-end;
   gap: 24px;
 }
 
-.total__price{
+.total__price {
   display: inline-flex;
   align-items: center;
   gap: 10px;
