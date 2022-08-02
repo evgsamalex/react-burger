@@ -4,11 +4,11 @@ import styles from './navbar.module.css'
 
 const Navbar = () => {
   return (
-    <ul className={styles.navbar}>
-      <li className={styles.navbar__item}><IconLink icon='Burger' isActive={true} href={'#'} text='Конструктор'/></li>
-      <li className={styles.navbar__item}><IconLink icon='List' isActive={false} href={'#'} text='Лента заказов'/></li>
-      <li className={styles.navbar__item}><IconLink icon='Profile' isActive={false} href={'#'} text='Личный кабинет' /></li>
-    </ul>
+    <nav className={styles.navbar}>
+      <IconLink icon='Burger' isActive={true} href={'#'} text='Конструктор' style={{float:'left'}} />
+      <IconLink icon='List' isActive={false} href={'#'} text='Лента заказов' style={{float:'left'}}/>
+      <IconLink icon='Profile' isActive={false} href={'#'} text='Личный кабинет' style={{float:'right'}}/>
+    </nav>
   );
 };
 

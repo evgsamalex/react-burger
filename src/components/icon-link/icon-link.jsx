@@ -25,7 +25,7 @@ const IconLink = props => {
   }
 
   return (
-    <a href={props.href} className={style.join(' ')}>
+    <a href={props.href} className={style.join(' ')} style={props.style}>
       {getIcon(props.icon,props.isActive)}
       {props.text}
     </a>
@@ -36,7 +36,8 @@ IconLink.propTypes = {
   href: PropTypes.string,
   icon: PropTypes.oneOf(['Burger', 'List', 'Profile'])  ,
   text: PropTypes.string,
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
+  style: PropTypes.object
 };
 
 export default IconLink;
