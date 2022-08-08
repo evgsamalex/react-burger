@@ -24,7 +24,7 @@ const App = () => {
     const getIngredients = async () => {
       const api = new Api(apiUrl);
       try {
-        const data = await api.GetIngredients();
+        const data = await api.getIngredients();
         setState({...state, data: data.data, isLoading: false, hasError: false});
       } catch (e: any) {
         console.log(e)
@@ -33,7 +33,7 @@ const App = () => {
     }
 
     getIngredients()
-    
+
   }, [])
 
   return (

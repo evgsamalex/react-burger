@@ -3,9 +3,13 @@ export default class Api {
     this._url = url;
   }
 
-  async GetIngredients() {
+  async getIngredients() {
     const response = await fetch(`${this._url}/ingredients`);
-    
+
+    return await this._checkResponse(response);
+  }
+
+  async _checkResponse(response) {
     if (!response.ok) {
       throw new Error(`error while sending request: ${response.status}`)
     }
