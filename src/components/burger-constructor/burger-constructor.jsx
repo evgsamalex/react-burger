@@ -1,14 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {ingredientPropTypes} from "../../utils/proptypes/ingredient";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, DragIcon, CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-components";
+import Modal from "../modal/modal";
+import OrderDetails from "../order-details/order-details";
 
 const BurgerConstructor = props => {
 
   const [bun] = props.data.filter(x => x.type === 'bun');
   const notLocked = props.data.filter(x => x.type !== 'bun');
   const sum = notLocked.reduce((partialSum, a) => partialSum + a.price, 0) + bun.price * 2;
+
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    order: {
+      _id: 34536,
+      accepted: true
+    }
+  })
+
+  const openOrderDetails = () => {
+    setModalState({
+      ...modalState, order: {
+        ...modalState.order, _id: modalState.order._id + 1
+      }, isOpen: true
+    })
+  }
 
   return (
     <div className={styles.ingredients + ' pt-25'}>
@@ -38,8 +56,14 @@ const BurgerConstructor = props => {
           {sum}
           <CurrencyIcon type="primary"/>
         </span>
-        <Button>Оформить заказ</Button>
+        <Button onClick={openOrderDetails}>Оформить заказ</Button>
       </div>
+      {
+        modalState.isOpen &&
+        <Modal onClose={() => setModalState({...modalState, isOpen: false})}>
+          <OrderDetails order={modalState.order}></OrderDetails>
+        </Modal>
+      }
     </div>
   );
 };

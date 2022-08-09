@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+  align-items: center;
+}
+
+.card__img {
+  max-width: 480px;
+}
+
+.card__composition {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.card__composition_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -5,12 +5,23 @@ import styles from './burger-ingredients.module.css'
 import {ingredientPropTypes} from "../../utils/proptypes/ingredient";
 import BurgerIngredient from "../burger-ingredient/burger-ingredient";
 import {getCategoryName, groupBy} from "../../utils/utils";
+import Modal from "../modal/modal";
+import IngredientDetails from "../ingredient-details/ingredient-details";
 
 const BurgerIngredients = props => {
 
   const categories = groupBy(props.data, 'type');
 
   const [currentTab, setCurrentTab] = useState('bun');
+
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    ingredient: null
+  });
+
+  const handleClick = e => {
+    setModalState({isOpen: true, ingredient: e});
+  }
 
   return (
     <div className={styles.ingredients}>
@@ -32,7 +43,7 @@ const BurgerIngredients = props => {
                 <ul className={styles.category__items + ' ml-4 mr-4 mt-6'}>
                   {categories[type].map((item) => (
                     <li key={item._id}>
-                      <BurgerIngredient ingredient={item}/>
+                      <BurgerIngredient key={'b' + item._id} ingredient={item} onClick={handleClick}/>
                     </li>
                   ))}
                 </ul>
@@ -41,6 +52,15 @@ const BurgerIngredients = props => {
           }
         </ul>
       </div>
+      {
+        modalState.isOpen && modalState.ingredient &&
+        <Modal
+          onClose={() => setModalState({...modalState, isOpen: false})}
+          title='Детали ингредиента'
+        >
+          <IngredientDetails ingredient={modalState.ingredient}/>
+        </Modal>
+      }
     </div>
   );
 };
