@@ -15,7 +15,7 @@ const Modal = ({onClose, title, ...props}) => {
         onClose();
       }
     }
-    
+
     document.addEventListener('keydown', handleEsc);
 
     return () => {
