@@ -46,9 +46,3 @@
   align-self: flex-end;
   gap: 24px;
 }
-
-.total__price {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
