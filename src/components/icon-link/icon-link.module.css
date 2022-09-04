@@ -1,4 +1,4 @@
-.iconlink{
+.iconlink {
   text-decoration: none;
   color: var(--text-primary-color);
   display: flex;
@@ -6,6 +6,6 @@
   justify-content: center;
 }
 
-.iconlink_inactive{
+.iconlink_inactive {
   color: var(--text-inactive-color);
 }

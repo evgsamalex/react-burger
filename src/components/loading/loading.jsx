@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import styles from './loading.module.css'
 
 const Loading = props => {
+  const style = props.absolute ? styles.loading + ' absolute' : styles.loading;
   return (
-    <div className={styles.loading}>
+    <div className={style}>
       <span className='text text_type_main-large'>{props.text}</span>
     </div>
   );
@@ -16,7 +17,8 @@ Loading.defaultProps = {
 
 
 Loading.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
+  absolute: PropTypes.bool
 };
 
 export default Loading;

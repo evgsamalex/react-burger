@@ -1,23 +1,35 @@
 @import url("./vendor/normalize.css");
 
-body {margin: 0; height: 100%; overflow: hidden}
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden
+}
 
-.page{
+.page {
 
 }
 
-.root{
+.root {
   box-sizing: border-box;
 }
 
-*::-webkit-scrollbar{
+*::-webkit-scrollbar {
   width: 8px
 }
 
-*::-webkit-scrollbar-track{
+*::-webkit-scrollbar-track {
   background-color: #2F2F37;
 }
 
-*::-webkit-scrollbar-thumb{
+*::-webkit-scrollbar-thumb {
   background-color: #8585AD;
+}
+
+.absolute {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
