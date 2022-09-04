@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './burger-ingredients.module.css'
@@ -17,9 +17,9 @@ const BurgerIngredients = () => {
 
   const {isLoading, items, error} = useSelector(store => store.ingredients)
 
-  const categories = groupBy(items, 'type');
-
   const [currentTab, setCurrentTab] = useState('bun');
+
+  const categories = useMemo(() => groupBy(items, 'type'), [items, currentTab]);
 
   const [modalState, setModalState] = useState({
     isOpen: false,

@@ -12,7 +12,6 @@ export const ingredientsSlice = createSlice({
   initialState,
   reducers: {
     fetching: (state) => {
-      console.log('dkkhflsjflksdjflks')
       state.isLoading = true;
       state.error = '';
     },
