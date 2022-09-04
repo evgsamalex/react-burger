@@ -8,9 +8,8 @@ import TotalPrice from "../total-price/total-price";
 import Loading from "../loading/loading";
 import {useFetching} from "../../hooks/useFetching";
 import DisplayError from "../error/display-error";
-import Api from "../../services/api";
-import {apiUrl} from "../../utils/constants";
 import {selectIngredientsIds} from "../../utils/utils";
+import {api} from "../../services/api";
 
 const BurgerConstructor = () => {
 
@@ -30,7 +29,6 @@ const BurgerConstructor = () => {
   const [createOrder, isLoading, error] = useFetching(
     async () => {
       setModalState({...modalState, isOpen: true})
-      const api = new Api(apiUrl);
 
       const response = await api.createOrder(selectIngredientsIds(constructor));
 

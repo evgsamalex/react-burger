@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './burger-ingredients.module.css'
@@ -7,10 +7,17 @@ import BurgerIngredient from "../burger-ingredient/burger-ingredient";
 import {getCategoryName, groupBy} from "../../utils/utils";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
+import {useDispatch, useSelector} from "react-redux";
+import {ingredientsSlice} from "../../services/reducers/ingredientsSlice";
+import Loading from "../loading/loading";
+import {fetchIngredients} from "../../services/actions/fetchIngredients";
+import DisplayError from "../error/display-error";
 
-const BurgerIngredients = props => {
+const BurgerIngredients = () => {
 
-  const categories = groupBy(props.data, 'type');
+  const {isLoading, items, error} = useSelector(store => store.ingredients)
+
+  const categories = groupBy(items, 'type');
 
   const [currentTab, setCurrentTab] = useState('bun');
 
@@ -19,8 +26,29 @@ const BurgerIngredients = props => {
     ingredient: null
   });
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchIngredients())
+  }, [])
+
   const handleClick = e => {
     setModalState({isOpen: true, ingredient: e});
+  }
+
+  const result = (content) =>
+    (
+      <div className={styles.ingredients}>
+        {content}
+      </div>
+    )
+
+  if (isLoading) {
+    return result(<Loading absolute={true}/>)
+  }
+
+  if (error) {
+    return result(<DisplayError error={error} absolute={true}/>)
   }
 
   return (
@@ -63,11 +91,6 @@ const BurgerIngredients = props => {
       }
     </div>
   );
-};
-
-
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropTypes).isRequired
 };
 
 export default BurgerIngredients;

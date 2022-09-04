@@ -37,3 +37,5 @@ export const selectIngredientsIds = constructor => {
   return result;
 }
 
+export const delay = ms => new Promise(res => setTimeout(res, ms))
+
