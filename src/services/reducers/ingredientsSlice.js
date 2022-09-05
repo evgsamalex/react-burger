@@ -1,9 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {getCategories} from "../../utils/utils";
 
 const initialState = {
-  items: [],
   isLoading: false,
-  error: ''
+  error: '',
+  items: [],
+  categories: [],
+  ingredientDetails: null
 }
 
 
@@ -19,12 +22,23 @@ export const ingredientsSlice = createSlice({
       state.isLoading = false;
       state.items = action.payload.data;
       state.error = '';
+      state.categories = getCategories(action.payload.data)
     },
     error: (state, action) => {
       state.isLoading = false;
-      state.error = '';
+      state.error = action.payload;
+    },
+    showDetails: (state, action) => {
+      state.ingredientDetails = action.payload;
+    },
+    hideDetails: (state) => {
+      state.ingredientDetails = null;
     }
   }
 })
 
 export default ingredientsSlice.reducer;
+
+export const selectItemsByCategory = (state, type) => {
+  return state.items.filter(x => x.type === type)
+};

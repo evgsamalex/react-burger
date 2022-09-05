@@ -1,26 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ingredientPropTypes} from "../../utils/proptypes/ingredient";
 import styles from './burger-ingredient.module.css'
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
+import {useDispatch} from "react-redux";
+import {ingredientsSlice} from "../../services/reducers/ingredientsSlice";
 
-const BurgerIngredient = React.memo(({ingredient, onClick}) => {
+const BurgerIngredient = React.memo(({ingredient}) => {
+  console.log('render ingredient')
 
-  const [count, setCount] = useState(0);
+  const count = 0;
 
-  const addItem = () => {
-    setCount(count + 1);
-  }
-
-  const handleClick = () => {
-    onClick(ingredient)
-  }
-
-  console.log('render');
+  const dispatch = useDispatch();
 
   return (
-    <div className={styles.card} onClick={handleClick}>
-      <img src={ingredient.image} alt={ingredient.name} onClick={addItem}/>
+    <div className={styles.card} onClick={() => dispatch(ingredientsSlice.actions.showDetails(ingredient))}>
+      <img src={ingredient.image} alt={ingredient.name}/>
       {count > 0 && <Counter count={count} size="default"/>}
       <div className={styles.card__price + ' mt-1'}>
         <span className='text text_type_digits-default'>{ingredient.price}</span>

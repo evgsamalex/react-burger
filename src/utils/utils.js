@@ -14,6 +14,15 @@ export const getCategoryName = type => {
   return name ? name : "undefined";
 }
 
+export const getCategories = (items) => {
+  return items
+    .map(item => item.type)
+    .filter((value, index, self) => self.indexOf(value) === index)
+    .map(type => {
+      return {type, name: getCategoryName(type)}
+    })
+}
+
 export const getFakeConstructor = data => {
   const [bun] = data.filter(x => x.type === 'bun');
   const items = data.filter(x => x.type !== 'bun');
