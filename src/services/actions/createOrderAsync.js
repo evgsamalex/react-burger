@@ -1,5 +1,6 @@
 import {api} from "../api";
 import {orderSlice} from "../reducers/orderSlice";
+import {burgerConstructorSlice} from "../reducers/burgerConstructorSlice";
 
 export const createOrderAsync = (ingredientIds) => async (dispatch) => {
   dispatch(orderSlice.actions.fetching())

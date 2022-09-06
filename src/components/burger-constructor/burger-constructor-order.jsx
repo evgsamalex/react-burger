@@ -10,6 +10,7 @@ import Loading from "../loading/loading";
 import OrderDetails from "../order-details/order-details";
 import DisplayError from "../error/display-error";
 import {orderSlice} from "../../services/reducers/orderSlice";
+import {burgerConstructorSlice} from "../../services/reducers/burgerConstructorSlice";
 
 const BurgerConstructorOrder = () => {
 
@@ -23,6 +24,13 @@ const BurgerConstructorOrder = () => {
     dispatch(createOrderAsync(selectIngredientsIds(constructor)));
   }
 
+  const close = () => {
+    dispatch(orderSlice.actions.close());
+    if (!isNullOrEmpty(order)) {
+      dispatch(burgerConstructorSlice.actions.clear())
+    }
+  }
+
   return (
     <>
       <div className={styles.container + ' mt-10 mb-10 mr-4'}>
@@ -31,7 +39,7 @@ const BurgerConstructorOrder = () => {
       </div>
       {
         isOpen &&
-        <Modal onClose={() => dispatch(orderSlice.actions.close())}>
+        <Modal onClose={close}>
           {
             isLoading && <Loading text='Создаем заказ...'/>
           }

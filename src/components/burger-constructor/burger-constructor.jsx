@@ -8,6 +8,7 @@ import BurgerConstructorIngredients from "./burger-constructor-ingredients";
 import {DragType} from "../../utils/constants";
 import {isNullOrEmpty} from "../../utils/utils";
 import BurgerConstructorOrder from "./burger-constructor-order";
+import * as uuid from "uuid";
 
 const BurgerConstructor = () => {
 
@@ -21,7 +22,7 @@ const BurgerConstructor = () => {
       isHover: monitor.isOver()
     }),
     drop(item) {
-      dispatch(burgerConstructorSlice.actions.add(item))
+      dispatch(burgerConstructorSlice.actions.add({...item, uuid: uuid.v4()}))
     }
   })
 
