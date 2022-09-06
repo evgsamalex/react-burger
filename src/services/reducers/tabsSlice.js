@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
   selected: 'bun',
+  clicked: 'bun',
   intersected: {
     bun: true,
     main: true,
@@ -15,6 +16,7 @@ export const tabsSlice = createSlice({
   reducers: {
     select: (state, action) => {
       state.selected = action.payload;
+      state.clicked = action.payload;
     },
     intersected: (state, action) => {
       state.intersected[action.payload.type] = action.payload.isIntersecting;

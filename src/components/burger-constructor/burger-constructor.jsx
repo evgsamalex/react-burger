@@ -1,100 +1,51 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 import styles from './burger-constructor.module.css'
-import {Button, ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import Modal from "../modal/modal";
-import OrderDetails from "../order-details/order-details";
-import {BurgerConstructorContext} from "../../services/app-context";
-import TotalPrice from "../total-price/total-price";
-import Loading from "../loading/loading";
-import {useFetching} from "../../hooks/useFetching";
-import DisplayError from "../error/display-error";
-import {selectIngredientsIds} from "../../utils/utils";
-import {api} from "../../services/api";
+import {useDispatch, useSelector} from "react-redux";
+import BurgerConstructorBun from "./burger-constructor-bun";
+import {burgerConstructorSlice} from "../../services/reducers/burgerConstructorSlice";
+import {useDrop} from "react-dnd";
+import BurgerConstructorIngredients from "./burger-constructor-ingredients";
+import {DragType} from "../../utils/constants";
+import {isNullOrEmpty} from "../../utils/utils";
+import BurgerConstructorOrder from "./burger-constructor-order";
 
 const BurgerConstructor = () => {
 
-  const [modalState, setModalState] = useState({
-    isOpen: false
-  })
+  const {bun, ingredients} = useSelector(store => store.burgerConstructor);
 
-  const [orderState, setOrderState] = useState({
-    success: false,
-    order: {
-      number: 0
-    },
-  })
+  const dispatch = useDispatch();
 
-  const {constructor} = useContext(BurgerConstructorContext);
-
-  const [createOrder, isLoading, error] = useFetching(
-    async () => {
-      setModalState({...modalState, isOpen: true})
-
-      const response = await api.createOrder(selectIngredientsIds(constructor));
-
-      if (response.success) {
-        setOrderState({success: true, order: {number: response.order.number}})
-      } else {
-        setOrderState({...orderState, success: false})
-      }
+  const [{isHover}, dropTarget] = useDrop({
+    accept: DragType.INGREDIENT,
+    collect: monitor => ({
+      isHover: monitor.isOver()
+    }),
+    drop(item) {
+      dispatch(burgerConstructorSlice.actions.add(item))
     }
-  )
+  })
 
-  if (!constructor.bun && constructor.ingredients.length === 0) {
+  const style = isHover ? styles.ingredients + ' pt-25 ' + styles.ingredients_hover : styles.ingredients + ' pt-25';
+
+  if (isNullOrEmpty(bun) && ingredients.length === 0) {
     return (
-      <div className={styles.ingredients + ' pt-25'}>
+      <div className={style} ref={dropTarget}>
+        <div className='absolute center'>
+          <h2 className='text text_type_main-medium'>Добавьте ингредиенты</h2>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className={styles.ingredients + ' pt-25'}>
-      <div className={styles.constructor__lock + ' pl-4 pr-6 pb-4'}>
-        <ConstructorElement text={constructor.bun.name + ' (верх)'} thumbnail={constructor.bun.image}
-                            price={constructor.bun.price} type={'top'}
-                            isLocked={true}/>
-      </div>
-      <div className={styles.constructor__items}>
-        <ul className={styles.constructor__list}>
-          {constructor.ingredients.map((ingredient) => {
-            return (
-              <li key={ingredient._id} className={styles.constructor__item + ' ml-4 mr-4'}
-              >
-                <DragIcon type="primary"/>
-                <ConstructorElement text={ingredient.name} thumbnail={ingredient.image} price={ingredient.price}/>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-      <div className={styles.constructor__lock + ' pl-4 pr-6 pt-4'}>
-        <ConstructorElement text={constructor.bun.name + ' (низ)'} thumbnail={constructor.bun.image}
-                            price={constructor.bun.price} type={'bottom'}
-                            isLocked={true}/>
-      </div>
-      <div className={styles.total + ' mt-10 mb-10 mr-4'}>
-        <TotalPrice/>
-        <Button onClick={createOrder}>Оформить заказ</Button>
-      </div>
-      {
-        modalState.isOpen &&
-        <Modal onClose={() => setModalState({...modalState, isOpen: false})}>
-          {
-            isLoading && <Loading text='Создаем заказ...'/>
-          }
-          {
-            !isLoading && orderState.success && <OrderDetails order={orderState.order}/>
-          }
-          {
-            error && <DisplayError error={error}/>
-          }
-        </Modal>
-      }
+    <div className={style} ref={dropTarget}>
+      <BurgerConstructorBun bun={bun} isUp={true}/>
+      <BurgerConstructorIngredients ingredients={ingredients}/>
+      <BurgerConstructorBun bun={bun} isUp={false}/>
+      <BurgerConstructorOrder/>
     </div>
   );
 };
-
-BurgerConstructor.propTypes = {};
 
 
 export default BurgerConstructor;

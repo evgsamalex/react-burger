@@ -1,15 +1,16 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styles from './total-price.module.css'
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {TotalPriceContext} from "../../services/app-context";
+import {useSelector} from "react-redux";
+import {totalPriceSelector} from "./utils";
 
 const TotalPrice = () => {
 
-  const {totalPriceState} = useContext(TotalPriceContext);
+  const price = useSelector(totalPriceSelector);
 
   return (
     <span className={styles.price + ' text text_type_digits-medium'}>
-          {totalPriceState.price}
+          {price}
       <CurrencyIcon type="primary"/>
     </span>
   );

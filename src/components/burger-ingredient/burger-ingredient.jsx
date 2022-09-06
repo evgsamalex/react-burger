@@ -3,19 +3,28 @@ import {ingredientPropTypes} from "../../utils/proptypes/ingredient";
 import styles from './burger-ingredient.module.css'
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {ingredientsSlice} from "../../services/reducers/ingredientsSlice";
+import {ingredientCountSelector} from "./utils";
+import {useDrag} from "react-dnd";
+import {DragType} from "../../utils/constants";
 
 const BurgerIngredient = React.memo(({ingredient}) => {
   console.log('render ingredient')
 
-  const count = 0;
+  const count = useSelector(state => ingredientCountSelector(state, ingredient._id));
 
   const dispatch = useDispatch();
 
+  const [, drag] = useDrag(() => ({
+    type: DragType.INGREDIENT,
+    item: ingredient
+  }))
+
   return (
-    <div className={styles.card} onClick={() => dispatch(ingredientsSlice.actions.showDetails(ingredient))}>
-      <img src={ingredient.image} alt={ingredient.name}/>
+    <div className={styles.card} onClick={() => dispatch(ingredientsSlice.actions.showDetails(ingredient))}
+         ref={drag}>
+      <img src={ingredient.image} alt={ingredient.name} draggable={false}/>
       {count > 0 && <Counter count={count} size="default"/>}
       <div className={styles.card__price + ' mt-1'}>
         <span className='text text_type_digits-default'>{ingredient.price}</span>

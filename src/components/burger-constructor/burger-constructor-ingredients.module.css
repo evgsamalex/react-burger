@@ -1,0 +1,35 @@
+.items {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.list {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 1;
+}
+
+.item_dragging {
+  opacity: 0;
+}
+
+.item_hover {
+  border: 1px dashed var(--text-primary-color);
+}

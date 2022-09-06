@@ -4,7 +4,7 @@ import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import {useDispatch, useSelector} from "react-redux";
 import Loading from "../loading/loading";
-import {fetchIngredients} from "../../services/actions/fetchIngredients";
+import {fetchIngredientsAsync} from "../../services/actions/fetchIngredientsAsync";
 import DisplayError from "../error/display-error";
 import Tabs from "../tabs/tabs";
 import BurgerIngredientsGroup from "./burger-ingredients-group";
@@ -19,7 +19,7 @@ const BurgerIngredients = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchIngredients())
+    dispatch(fetchIngredientsAsync())
   }, [])
 
   const result = (content) =>

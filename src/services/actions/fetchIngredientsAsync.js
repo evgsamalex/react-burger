@@ -1,7 +1,7 @@
 import {ingredientsSlice} from "../reducers/ingredientsSlice";
 import {api} from "../api";
 
-export const fetchIngredients = () => async (dispatch) => {
+export const fetchIngredientsAsync = () => async (dispatch) => {
   dispatch(ingredientsSlice.actions.fetching())
   try {
     const ingredients = await api.getIngredients();

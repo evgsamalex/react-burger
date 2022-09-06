@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './burger-ingredients-group.module.css'
 import {selectItemsByCategory} from "../../services/reducers/ingredientsSlice";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,15 +12,23 @@ const BurgerIngredientsGroup = ({category}) => {
 
   const dispatch = useDispatch();
 
+  const {clicked, selected} = useSelector(store => store.tabs);
+
   useObserver(element, entry => {
     dispatch(tabsSlice.actions.intersected({type: category.type, isIntersecting: entry.isIntersecting}))
   })
 
+  useEffect(() => {
+    if (selected === category.type) {
+      element.current.scrollIntoView({behavior: "smooth"});
+    }
+  }, [clicked])
+
   const items = useSelector(state => selectItemsByCategory(state.ingredients, category.type));
 
   return (
-    <li ref={element} className={styles.category + ' mt-10 ' + category.type}>
-      <h2 className='text text_type_main-medium'>{category.name}</h2>
+    <li className={styles.category + ' mt-10 ' + category.type}>
+      <h2 ref={element} className='text text_type_main-medium'>{category.name}</h2>
       <ul className={styles.category__items + ' ml-4 mr-4 mt-6'}>
         <ul className={styles.category__items + ' ml-4 mr-4 mt-6'}>
           {items.map((item) => (
@@ -33,7 +41,5 @@ const BurgerIngredientsGroup = ({category}) => {
     </li>
   );
 };
-
-BurgerIngredientsGroup.propTypes = {};
 
 export default BurgerIngredientsGroup;

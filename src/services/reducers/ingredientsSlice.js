@@ -42,3 +42,5 @@ export default ingredientsSlice.reducer;
 export const selectItemsByCategory = (state, type) => {
   return state.items.filter(x => x.type === type)
 };
+
+
