@@ -8,7 +8,7 @@ import {burgerConstructorSlice} from "../../services/reducers/burgerConstructorS
 import {useDrag, useDrop} from "react-dnd";
 import {DragType} from "../../utils/constants";
 
-const BurgerConstructorIngredient = ({ingredient, index}) => {
+const BurgerConstructorIngredient = ({ingredient}) => {
 
   const ref = useRef(null);
 
@@ -18,40 +18,40 @@ const BurgerConstructorIngredient = ({ingredient, index}) => {
     dispatch(burgerConstructorSlice.actions.remove(index))
   }
 
-  const [{isDragging}, drag] = useDrag(() => ({
-    type: DragType.CONSTRUCTOR,
-    item: {ingredient, index},
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
-  }))
-
   const [{isHover}, drop] = useDrop({
     accept: DragType.CONSTRUCTOR,
     collect(monitor) {
       return {isHover: monitor.isOver()}
     },
     drop(item) {
-      const dragIndex = item.index;
-      const hoverIndex = index;
+      const dragUuid = item.uuid;
+      const hoverUuid = ingredient.uuid;
 
-      if (dragIndex === hoverIndex) return;
+      if (dragUuid === hoverUuid) return;
 
-      dispatch(burgerConstructorSlice.actions.move({dragIndex, hoverIndex}))
+      dispatch(burgerConstructorSlice.actions.move({dragUuid, hoverUuid}))
     }
   })
+
+  const [{isDragging}, drag] = useDrag(() => ({
+    type: DragType.CONSTRUCTOR,
+    item: ingredient,
+    collect: monitor => ({
+      isDragging: monitor.isDragging()
+    })
+  }))
 
   const style = [styles.item, 'ml-4 mr-4'];
   if (isDragging) style.push(styles.item_dragging);
   if (isHover) style.push(styles.item_hover);
 
-  drag(drop(ref))
+  drop(drag(ref))
 
   return (
     <li ref={ref} className={style.join(' ')}>
       <DragIcon type="primary"/>
       <ConstructorElement text={ingredient.name} thumbnail={ingredient.image} price={ingredient.price}
-                          handleClose={() => removeIngredient(index)}/>
+                          handleClose={() => removeIngredient(ingredient.uuid)}/>
     </li>
   );
 };

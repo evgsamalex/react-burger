@@ -11,7 +11,7 @@ const BurgerConstructorIngredients = ({ingredients}) => {
         {ingredients.length > 0 &&
           ingredients.map((ingredient, index) => {
             return (
-              <BurgerConstructorIngredient key={ingredient.uuid} ingredient={ingredient} index={index}/>
+              <BurgerConstructorIngredient key={ingredient.uuid} ingredient={ingredient}/>
             )
           })}
       </ul>
