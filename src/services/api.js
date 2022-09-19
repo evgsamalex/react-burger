@@ -1,3 +1,5 @@
+import {apiUrl} from "../utils/constants";
+
 export default class Api {
   constructor(url) {
     this._url = url;
@@ -34,3 +36,5 @@ export default class Api {
     throw new Error(`error while sending request: ${response.status}`)
   }
 }
+
+export const api = new Api(apiUrl);

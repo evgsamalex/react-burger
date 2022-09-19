@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 export const ingredientPropTypes = PropTypes.shape({
-  _id: PropTypes.string.isRequired,
+  _id: PropTypes.string,
   name: PropTypes.string,
   type: PropTypes.string,
   proteins: PropTypes.number,
