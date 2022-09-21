@@ -39,3 +39,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.link {
+  color: var(--colors-interface-accent);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
