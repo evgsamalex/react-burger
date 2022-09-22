@@ -5,5 +5,6 @@ export const routes = {
   forgotPassword: "/forgot-password",
   resetPassword: "/reset-password",
   profile: "/profile",
-  ingredients: "/ingredients/:id"
+  ingredients: "/ingredients/:id",
+  orders: "/orders"
 }

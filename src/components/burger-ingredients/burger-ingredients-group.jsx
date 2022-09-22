@@ -27,8 +27,8 @@ const BurgerIngredientsGroup = ({category}) => {
   const items = useSelector(state => selectItemsByCategory(state.ingredients, category.type));
 
   return (
-    <li className={styles.category + ' mt-10 ' + category.type}>
-      <h2 ref={element} className='text text_type_main-medium'>{category.name}</h2>
+    <li ref={element} className={styles.category + ' mt-10 ' + category.type}>
+      <h2 className='text text_type_main-medium'>{category.name}</h2>
       <ul className={styles.category__items + ' ml-4 mr-4 mt-6'}>
         <ul className={styles.category__items + ' ml-4 mr-4 mt-6'}>
           {items.map((item) => (

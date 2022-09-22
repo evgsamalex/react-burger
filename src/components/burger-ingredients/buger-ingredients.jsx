@@ -9,6 +9,7 @@ import DisplayError from "../error/display-error";
 import Tabs from "../tabs/tabs";
 import BurgerIngredientsGroup from "./burger-ingredients-group";
 import {ingredientsSlice} from "../../services/reducers/ingredientsSlice";
+import {isNullOrEmpty} from "../../utils/utils";
 
 const BurgerIngredients = () => {
 
@@ -20,6 +21,9 @@ const BurgerIngredients = () => {
 
   useEffect(() => {
     dispatch(fetchIngredientsAsync())
+    return () => {
+      dispatch(ingredientsSlice.actions.reset());
+    }
   }, [])
 
   const result = (content) =>
@@ -35,6 +39,10 @@ const BurgerIngredients = () => {
 
   if (error) {
     return result(<DisplayError error={error} absolute={true}/>)
+  }
+
+  if (isNullOrEmpty(categories)) {
+    return null;
   }
 
   return (

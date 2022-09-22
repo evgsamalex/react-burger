@@ -5,14 +5,11 @@ import {EmailInput, PasswordInput, Button} from "@ya.praktikum/react-developer-b
 import {Link} from "react-router-dom";
 import {routes} from "../../utils/routes";
 import Form from "../../components/form/form";
+import {useForm} from "../../hooks/useForm";
 
 const Login = () => {
 
-  const [form, setValue] = useState({email: '', password: ''});
-
-  const onChange = e => {
-    setValue({...form, [e.target.name]: e.target.value});
-  }
+  const [form, onChange] = useForm({email: '', password: ''});
 
   return (
     <PageContent>
@@ -27,7 +24,7 @@ const Login = () => {
         пользователь? <Link to={routes.register} className='text text_type_main-small link'>Зарегистрироваться</Link>
       </p>
       <p className='text text_type_main-small text_color_inactive mt-4'>Забыли
-        пароль? <Link to={routes.resetPassword} className='text text_type_main-small link'>Восстановить пароль</Link>
+        пароль? <Link to={routes.forgotPassword} className='text text_type_main-small link'>Восстановить пароль</Link>
       </p>
     </PageContent>
   );

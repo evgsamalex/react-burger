@@ -6,14 +6,11 @@ import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-deve
 import {Link} from "react-router-dom";
 import {routes} from "../../utils/routes";
 import PageContent from "../../components/page-content/page-content";
+import {useForm} from "../../hooks/useForm";
 
 const Register = () => {
 
-  const [form, setValue] = useState({email: '', password: '', name: ''});
-
-  const onChange = e => {
-    setValue({...form, [e.target.name]: e.target.value});
-  }
+  const [form, onChange] = useForm({email: '', password: '', name: ''});
 
   return (
     <PageContent>

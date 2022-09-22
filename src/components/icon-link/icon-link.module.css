@@ -1,11 +1,11 @@
 .iconlink {
   text-decoration: none;
-  color: var(--text-primary-color);
+  color: var(--text-inactive-color);
   display: flex;
   gap: 8px;
   justify-content: center;
 }
 
-.iconlink_inactive {
-  color: var(--text-inactive-color);
+.iconlink_active {
+  color: var(--text-primary-color);
 }

@@ -27,6 +27,12 @@ export const selectIngredientsIds = constructor => {
 export const delay = ms => new Promise(res => setTimeout(res, ms))
 
 export const isNullOrEmpty = obj => {
-  return obj === null || (Object.keys(obj).length === 0 && obj.constructor === Object);
+  if (obj === null) return true;
+
+  if (Array.isArray(obj)) {
+    return obj.length === 0;
+  }
+
+  return (Object.keys(obj).length === 0 && obj.constructor === Object);
 }
 
