@@ -12,6 +12,7 @@ body {
 
 .root {
   box-sizing: border-box;
+  --max-content-width: 1280px;
 }
 
 *::-webkit-scrollbar {
@@ -38,6 +39,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.columns {
+  flex-direction: column;
 }
 
 .link {

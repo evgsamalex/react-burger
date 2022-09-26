@@ -1,0 +1,15 @@
+.profile {
+  width: 100%;
+  max-width: var(--max-content-width);
+  display: flex;
+  box-sizing: border-box;
+  gap: calc(var(--offset-base-size) * 15);
+  height: 100%;
+}
+
+.profile__content {
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+  flex: 1;
+}

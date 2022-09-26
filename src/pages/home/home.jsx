@@ -1,5 +1,4 @@
 import React from 'react';
-import withPage from "../providers/with-page";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import Main from "../../components/main/main";
 import Section from "../../components/section/section";
@@ -22,4 +21,4 @@ const Home = () => {
   );
 };
 
-export default withPage(Home);
+export default Home;

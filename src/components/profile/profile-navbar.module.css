@@ -1,0 +1,13 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  text-decoration: none;
+  min-height: 64px;
+}
+
+.link:hover {
+  color: var(--text-primary-color);
+}

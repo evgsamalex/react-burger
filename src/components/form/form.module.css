@@ -3,4 +3,5 @@
   flex-direction: column;
   align-items: center;
   gap: calc(var(--offset-base-size) * 6);
+  max-width: 480px;
 }

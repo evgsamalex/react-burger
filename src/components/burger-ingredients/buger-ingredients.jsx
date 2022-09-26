@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
 import styles from './burger-ingredients.module.css'
-import Modal from "../modal/modal";
-import IngredientDetails from "../ingredient-details/ingredient-details";
 import {useDispatch, useSelector} from "react-redux";
 import Loading from "../loading/loading";
 import {fetchIngredientsAsync} from "../../services/actions/fetchIngredientsAsync";
@@ -14,8 +12,6 @@ import {isNullOrEmpty} from "../../utils/utils";
 const BurgerIngredients = () => {
 
   const {isLoading, error, categories} = useSelector(store => store.ingredients)
-
-  const {ingredientDetails} = useSelector(state => state.ingredients)
 
   const dispatch = useDispatch();
 
@@ -58,15 +54,6 @@ const BurgerIngredients = () => {
           }
         </ul>
       </div>
-      {
-        ingredientDetails &&
-        <Modal
-          onClose={() => dispatch(ingredientsSlice.actions.hideDetails())}
-          title='Детали ингредиента'
-        >
-          <IngredientDetails ingredient={ingredientDetails}/>
-        </Modal>
-      }
     </div>
   );
 };

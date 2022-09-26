@@ -1,12 +1,16 @@
 import React from 'react';
-import withPage from "../providers/with-page";
+import PageContent from "../../components/page-content/page-content";
+import IngredientDetails from "../../components/ingredient-details/ingredient-details";
 
 const Ingredients = () => {
   return (
-    <div>
-      Ingredients
-    </div>
+    <PageContent>
+      <div className='absolute center columns'>
+        <h1 className='text text_type_main-large text_color_primary'>Детали ингредиента</h1>
+        <IngredientDetails/>
+      </div>
+    </PageContent>
   );
 };
 
-export default withPage(Ingredients);
+export default Ingredients;
