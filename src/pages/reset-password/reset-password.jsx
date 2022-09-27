@@ -50,7 +50,7 @@ const ResetPassword = () => {
         </Button>
       </Form>
       <FormAnnotation
-        items={[{title: "Вспомнили пароль?", to: routes.login, linkText: "Войти"}]}
+        items={[{id: 1, title: "Вспомнили пароль?", to: routes.login, linkText: "Войти"}]}
       />
     </PageContent>
   );

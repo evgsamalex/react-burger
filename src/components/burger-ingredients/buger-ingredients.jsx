@@ -1,26 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './burger-ingredients.module.css'
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import Loading from "../loading/loading";
-import {fetchIngredientsAsync} from "../../services/actions/fetchIngredientsAsync";
 import DisplayError from "../error/display-error";
 import Tabs from "../tabs/tabs";
 import BurgerIngredientsGroup from "./burger-ingredients-group";
-import {ingredientsSlice} from "../../services/reducers/ingredientsSlice";
 import {isNullOrEmpty} from "../../utils/utils";
 
 const BurgerIngredients = () => {
 
   const {isLoading, error, categories} = useSelector(store => store.ingredients)
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchIngredientsAsync())
-    return () => {
-      dispatch(ingredientsSlice.actions.reset());
-    }
-  }, [])
 
   const result = (content) =>
     (

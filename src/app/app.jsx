@@ -3,6 +3,7 @@ import {BrowserRouter} from "react-router-dom";
 import Routing from "../pages";
 import AppHeader from "../components/app-header/app-header";
 import styles from './app.module.css';
+import withProviders from "./providers";
 
 const App = () => {
   return (
@@ -15,4 +16,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default withProviders(App);

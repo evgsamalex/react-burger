@@ -1,8 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './ingredient-details.module.css'
 import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchIngredientsAsync} from "../../services/actions/fetchIngredientsAsync";
+import {useSelector} from "react-redux";
 import PageContent from "../page-content/page-content";
 import DisplayError from "../error/display-error";
 import Loading from "../loading/loading";
@@ -12,14 +11,6 @@ const IngredientDetails = () => {
   const {id} = useParams();
 
   const {isLoading, error, items} = useSelector(store => store.ingredients)
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (items.length === 0) {
-      dispatch(fetchIngredientsAsync());
-    }
-  }, [])
 
   if (items.length === 0) {
     return null;

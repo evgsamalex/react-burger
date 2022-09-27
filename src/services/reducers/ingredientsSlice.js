@@ -6,7 +6,6 @@ const initialState = {
   error: '',
   items: [],
   categories: [],
-  ingredientDetails: null
 }
 
 
@@ -28,19 +27,6 @@ export const ingredientsSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    reset: (state) => {
-      state.error = '';
-      state.isLoading = false;
-      state.items = [];
-      state.categories = [];
-      state.ingredientDetails = null;
-    },
-    showDetails: (state, action) => {
-      state.ingredientDetails = action.payload;
-    },
-    hideDetails: (state) => {
-      state.ingredientDetails = null;
-    }
   }
 })
 

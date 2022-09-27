@@ -32,10 +32,7 @@ const NotAuthRoute = ({children, ...rest}) => {
           children
         ) : (
           <Redirect
-            to={{
-              pathname: routes.main,
-              state: {from: location}
-            }}
+            to={location?.state?.from || routes.main}
           />
         )
       }

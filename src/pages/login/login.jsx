@@ -41,8 +41,8 @@ const Login = () => {
         </Button>
       </Form>
       <FormAnnotation items={[
-        {title: "Вы - новый пользователь?", to: routes.register, linkText: "Зарегистрироваться"},
-        {title: "Забыли пароль?", to: routes.forgotPassword, linkText: "Восстановить пароль"},
+        {id: 1, title: "Вы - новый пользователь?", to: routes.register, linkText: "Зарегистрироваться"},
+        {id: 2, title: "Забыли пароль?", to: routes.forgotPassword, linkText: "Восстановить пароль"},
       ]}/>
     </PageContent>
   );

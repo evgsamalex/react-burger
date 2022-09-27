@@ -44,7 +44,7 @@ const Register = () => {
         </Button>
       </Form>
       <FormAnnotation items={[
-        {title: "Уже зарегестрированы?", to: routes.login, linkText: "Войти"},
+        {id: 1, title: "Уже зарегестрированы?", to: routes.login, linkText: "Войти"},
       ]}/>
     </PageContent>
   );

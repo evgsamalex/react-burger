@@ -54,13 +54,13 @@ const Routing = () => {
       </Switch>
       {
         background &&
-        (<>
+        (
           <Route path={routes.ingredients}>
             <Modal onClose={() => history.goBack()} title='Детали ингредиента'>
               <IngredientDetails/>
             </Modal>
           </Route>
-        </>)
+        )
       }
     </>
   );
