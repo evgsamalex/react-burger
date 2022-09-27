@@ -1,11 +1,10 @@
-import {api} from "../api";
 import {orderSlice} from "../reducers/orderSlice";
-import {burgerConstructorSlice} from "../reducers/burgerConstructorSlice";
+import {createOrder} from "../../api";
 
 export const createOrderAsync = (ingredientIds) => async (dispatch) => {
   dispatch(orderSlice.actions.fetching())
   try {
-    const result = await api.createOrder(ingredientIds);
+    const result = await createOrder(ingredientIds);
     dispatch(orderSlice.actions.success(result));
   } catch (e) {
     dispatch(orderSlice.actions.error(e.message))

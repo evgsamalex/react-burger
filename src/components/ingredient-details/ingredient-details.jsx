@@ -1,8 +1,40 @@
 import React from 'react';
-import {ingredientPropTypes} from "../../utils/proptypes/ingredient";
 import styles from './ingredient-details.module.css'
+import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
+import PageContent from "../page-content/page-content";
+import DisplayError from "../error/display-error";
+import Loading from "../loading/loading";
 
-const IngredientDetails = ({ingredient}) => {
+const IngredientDetails = () => {
+
+  const {id} = useParams();
+
+  const {isLoading, error, items} = useSelector(store => store.ingredients)
+
+  if (items.length === 0) {
+    return null;
+  }
+
+  const ingredient = items.find(x => x._id === id);
+
+  if (!ingredient || error) {
+    const err = error || 'Ингредиент не найден';
+    return (
+      <PageContent>
+        <DisplayError error={err}></DisplayError>
+      </PageContent>
+    )
+  }
+
+  if (isLoading) {
+    return (
+      <PageContent>
+        <Loading/>
+      </PageContent>
+    )
+  }
+
   return (
     <div className={styles.card + ' mb-5'}>
       <img src={ingredient.image_large} alt={ingredient.name} className={styles.card__img}/>
@@ -29,8 +61,6 @@ const IngredientDetails = ({ingredient}) => {
   );
 };
 
-IngredientDetails.propTypes = {
-  ingredient: ingredientPropTypes.isRequired
-};
+IngredientDetails.propTypes = {};
 
 export default IngredientDetails;

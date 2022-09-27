@@ -11,6 +11,9 @@ import OrderDetails from "../order-details/order-details";
 import DisplayError from "../error/display-error";
 import {orderSlice} from "../../services/reducers/orderSlice";
 import {burgerConstructorSlice} from "../../services/reducers/burgerConstructorSlice";
+import {useAuth} from "../../hooks/useAuth";
+import {useHistory} from "react-router-dom";
+import {routes} from "../../utils/routes";
 
 const BurgerConstructorOrder = () => {
 
@@ -18,9 +21,17 @@ const BurgerConstructorOrder = () => {
 
   const {isLoading, error, order, isOpen} = useSelector(store => store.order);
 
+  const [auth] = useAuth();
+
   const dispatch = useDispatch();
 
+  const history = useHistory()
+
   const createOrder = () => {
+    if (!auth) {
+      history.push(routes.login);
+      return;
+    }
     dispatch(createOrderAsync(selectIngredientsIds(constructor)));
   }
 

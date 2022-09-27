@@ -20,6 +20,12 @@ export const tabsSlice = createSlice({
     },
     intersected: (state, action) => {
       state.intersected[action.payload.type] = action.payload.isIntersecting;
+
+      if (!state.intersected.bun && !state.intersected.main && !state.intersected.sauce) {
+        state.selected = 'bun';
+        return;
+      }
+
       if (state.intersected.bun) {
         state.selected = 'bun'
       }
@@ -31,7 +37,7 @@ export const tabsSlice = createSlice({
       if (state.intersected.sauce) {
         state.selected = 'sauce'
       }
-    }
+    },
   }
 })
 
