@@ -31,7 +31,7 @@ const BurgerIngredient = React.memo(({ingredient}) => {
         pathname: routes.ingredients.replace(':id', ingredient._id),
         state: {background: location}
       }}>
-      <div className={styles.card} onClick={() => dispatch(ingredientsSlice.actions.showDetails(ingredient))}
+      <div className={styles.card}
            ref={drag}>
         <img src={ingredient.image} alt={ingredient.name} draggable={false}/>
         {count > 0 && <Counter count={count} size="default"/>}
