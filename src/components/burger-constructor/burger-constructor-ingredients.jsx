@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from "./burger-constructor-ingredients.module.css";
+import css from "./burger-constructor-ingredient.module.css";
 import {ingredientPropTypes} from "../../utils/proptypes/ingredient";
 import BurgerConstructorIngredient from "./burger-constructor-ingredient";
+import Scroll from "../scroll/scroll";
 
 const BurgerConstructorIngredients = ({ingredients}) => {
   return (
-    <div className={styles.items}>
-      <ul className={styles.list}>
+    <Scroll>
+      <ul className={css.items + ' list'}>
         {ingredients.length > 0 &&
-          ingredients.map((ingredient, index) => {
+          ingredients.map((ingredient) => {
             return (
               <BurgerConstructorIngredient key={ingredient.uuid} ingredient={ingredient}/>
             )
           })}
       </ul>
-    </div>
+    </Scroll>
   );
 };
 

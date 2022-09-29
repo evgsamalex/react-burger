@@ -13,6 +13,7 @@ import ProtectedRoute from "../components/routing/protected-route";
 import NotAuthRoute from "../components/routing/not-auth-route";
 import Modal from "../components/modal/modal";
 import IngredientDetails from "../components/ingredient-details/ingredient-details";
+import Feed from "./feed/feed";
 
 export {Home, ForgotPassword, Ingredients, Login, Profile, Register, ResetPassword};
 
@@ -47,6 +48,9 @@ const Routing = () => {
         </ProtectedRoute>
         <Route path={routes.ingredients} exact={true}>
           <Ingredients/>
+        </Route>
+        <Route path={routes.feed}>
+          <Feed/>
         </Route>
         <Route>
           <NotFound404/>

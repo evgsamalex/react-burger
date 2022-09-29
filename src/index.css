@@ -12,7 +12,8 @@ body {
 
 .root {
   box-sizing: border-box;
-  --max-content-width: 1280px;
+  --max-content-width: 1240px;
+  --max-page-width: 1280px;
 }
 
 *::-webkit-scrollbar {
@@ -39,10 +40,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .columns {
   flex-direction: column;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
 }
 
 .link {
@@ -50,5 +60,21 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.text_left {
+  text-align: left;
+}
+
+.max_content {
+  max-width: var(--max-content-width);
+}
+
+
 
 

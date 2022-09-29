@@ -6,6 +6,7 @@ import DisplayError from "../error/display-error";
 import Tabs from "../tabs/tabs";
 import BurgerIngredientsGroup from "./burger-ingredients-group";
 import {isNullOrEmpty} from "../../utils/utils";
+import Scroll from "../scroll/scroll";
 
 const BurgerIngredients = () => {
 
@@ -34,15 +35,15 @@ const BurgerIngredients = () => {
     <div className={styles.ingredients}>
       <h1 className='text text_type_main-large mt-10 mb-5'>Соберите бургер</h1>
       <Tabs categories={categories}/>
-      <div className={styles.container}>
-        <ul className={styles.container__ingredients}>
+      <Scroll>
+        <ul className={'list'}>
           {
             categories.map((item) => (
               <BurgerIngredientsGroup key={item.type} category={item}/>
             ))
           }
         </ul>
-      </div>
+      </Scroll>
     </div>
   );
 };

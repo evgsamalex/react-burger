@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <IconLink icon='Burger' to={routes.main} text='Конструктор' className={styles.navbar__left}/>
-      <IconLink icon='List' to={routes.orders} text='Лента заказов' className={styles.navbar__left}/>
+      <IconLink icon='List' to={routes.feed} text='Лента заказов' className={styles.navbar__left}/>
       <IconLink icon='Profile' to={routes.profile} href={'#'} text='Личный кабинет' className={styles.navbar__right}
                 exact={false}/>
     </nav>

@@ -5,10 +5,8 @@ import IngredientDetails from "../../components/ingredient-details/ingredient-de
 const Ingredients = () => {
   return (
     <PageContent>
-      <div className='absolute center columns'>
-        <h1 className='text text_type_main-large text_color_primary'>Детали ингредиента</h1>
-        <IngredientDetails/>
-      </div>
+      <h1 className='text text_type_main-large text_color_primary'>Детали ингредиента</h1>
+      <IngredientDetails/>
     </PageContent>
   );
 };

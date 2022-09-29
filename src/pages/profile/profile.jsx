@@ -8,7 +8,7 @@ import ProfileInfo from "../../components/profile/profile-info";
 
 const Profile = () => {
   return (
-    <div className={css.profile + ' pl-5 pr-5'}>
+    <div className={css.profile}>
       <div className='mt-30'>
         <ProfileNavbar/>
       </div>

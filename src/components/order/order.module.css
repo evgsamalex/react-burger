@@ -1,0 +1,43 @@
+.order_list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--offset-base-size) * 4);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.order {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 40px;
+  box-sizing: border-box;
+}
+
+.order:hover {
+  background-color: var(--background-element);
+  cursor: pointer;
+}
+
+.order__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order__main {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.order__price {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+

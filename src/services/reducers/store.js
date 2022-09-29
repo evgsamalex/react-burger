@@ -6,6 +6,9 @@ import constructorReducer from './burgerConstructorSlice'
 import orderReducer from './orderSlice'
 import authSlice from "./authSlice";
 import passwordSlice from "./passwordSlice";
+import webSocketMiddleware from "../middleware/webSocketMiddleware";
+import wsFeedSlice, {wsFeedActions} from "./wsFeedSlice";
+import config from "../../api/config";
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
@@ -13,11 +16,15 @@ export const rootReducer = combineReducers({
   burgerConstructor: constructorReducer,
   order: orderReducer,
   auth: authSlice,
-  password: passwordSlice
+  password: passwordSlice,
+  wsFeed: wsFeedSlice
 })
 
 export const setupStore = () => {
   return configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: getDefaultMiddleware => getDefaultMiddleware({serializableCheck: false})
+      .concat(webSocketMiddleware(config.wsPublicUrl, wsFeedActions))
+    //.concat(webSocketMiddleware(config.wsPrivateUrl, wsFeedActions, config.tokenStorage.getAccessToken))
   })
 }
