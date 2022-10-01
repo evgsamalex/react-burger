@@ -1,29 +1,23 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
+import {useSelector} from "react-redux";
 import Scroll from "../../components/scroll/scroll";
-import {wsFeedSlice} from "../../services/reducers/wsFeedSlice";
 import Loading from "../../components/loading/loading";
 import PageContent from "../../components/page-content/page-content";
 import DisplayError from "../../components/error/display-error";
 import Main from "../../components/main/main";
 import OrderList from "../../components/order/order-list";
+import {useFeed} from "../../hooks/useFeed";
+import {wsFeedActions, stateSelector} from "../../services/reducers/web-socket/ws-feed-slice";
+import {routes} from "../../utils/routes";
+import OrdersSummary from "../../components/orders-summary/orders-summary";
 
 const Feed = () => {
 
-  const {connected, orderIds, error} = useSelector(state => state.wsFeed);
+  const {connected, error} = useFeed(wsFeedActions, stateSelector);
 
-  const dispatch = useDispatch();
+  const {feedIds} = useSelector(state => state.orders);
 
-  useEffect(() => {
-    if (!connected) {
-      dispatch(wsFeedSlice.actions.start());
-    }
-    return () => {
-      dispatch(wsFeedSlice.actions.stop())
-    }
-  }, [])
-
-  if (!connected || orderIds.length === 0) {
+  if (!connected || feedIds.length === 0) {
     return (<PageContent><Loading/></PageContent>)
   }
 
@@ -36,10 +30,10 @@ const Feed = () => {
       <h2 className={'text text_type_main-large text_color_primary text_left w100 mt-10 mb-5'}>Лента заказов</h2>
       <Main>
         <Scroll>
-          <OrderList ordersIds={orderIds}/>
+          <OrderList ordersIds={feedIds} pathname={routes.feedDetails}/>
         </Scroll>
         <div>
-          jfdksjflksjdlfjslkfjslk
+          <OrdersSummary orderIds={feedIds}/>
         </div>
       </Main>
     </div>

@@ -1,6 +1,5 @@
 .iconlink {
   text-decoration: none;
-  color: var(--text-inactive-color);
   display: flex;
   gap: 8px;
   justify-content: center;

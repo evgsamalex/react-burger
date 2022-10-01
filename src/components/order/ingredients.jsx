@@ -6,13 +6,14 @@ import IngredientImage from "./ingredient-image";
 
 const Ingredients = ({ingredients}) => {
   const max = 5;
+  const count = Object.keys(ingredients).length;
   return (
     <div className={css.ingredients}>
       {
-        ingredients.map((ingredient, index) => {
+        Object.values(ingredients).map((item, index) => {
           if (index > max) return null;
-          const count = index === max ? ingredients.length - max : undefined;
-          return ingredientWrapper(ingredient, ingredients.length - index, count)
+          const plusCount = index === max ? count - max : undefined;
+          return ingredientWrapper(item.ingredient, count - index, plusCount)
         })
       }
     </div>
@@ -31,7 +32,11 @@ const ingredientWrapper = (ingredient, zIndex, count = undefined) => {
 }
 
 Ingredients.propTypes = {
-  ingredients: PropTypes.arrayOf(ingredientPropTypes)
+  ingredients: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.string,
+    ingredient: ingredientPropTypes,
+    count: PropTypes.number
+  }))
 };
 
 export default Ingredients;

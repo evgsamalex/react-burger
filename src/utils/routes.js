@@ -5,7 +5,9 @@ export const routes = {
   forgotPassword: "/forgot-password",
   resetPassword: "/reset-password",
   profile: "/profile",
-  profileOrders: "/profile/feed",
+  profileOrders: "/profile/orders",
+  orderDetails: "/profile/orders/:id",
   ingredients: "/ingredients/:id",
-  feed: "/feed"
+  feed: "/feed",
+  feedDetails: "/feed/:id"
 }

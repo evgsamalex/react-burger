@@ -3,8 +3,7 @@ import {ingredientPropTypes} from "../../utils/proptypes/ingredient";
 import styles from './burger-ingredient.module.css'
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import {useDispatch, useSelector} from "react-redux";
-import {ingredientsSlice} from "../../services/reducers/ingredientsSlice";
+import {useSelector} from "react-redux";
 import {ingredientCountSelector} from "./utils";
 import {useDrag} from "react-dnd";
 import {DragType} from "../../utils/constants";
@@ -16,8 +15,6 @@ const BurgerIngredient = React.memo(({ingredient}) => {
 
   const count = useSelector(state => ingredientCountSelector(state, ingredient._id));
 
-  const dispatch = useDispatch();
-
   const location = useLocation();
 
   const [, drag] = useDrag(() => ({
@@ -26,7 +23,7 @@ const BurgerIngredient = React.memo(({ingredient}) => {
   }))
 
   return (
-    <Link className={styles.link} key={ingredient._id} to={
+    <Link className={'link'} key={ingredient._id} to={
       {
         pathname: routes.ingredients.replace(':id', ingredient._id),
         state: {background: location}

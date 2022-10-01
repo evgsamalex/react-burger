@@ -8,7 +8,7 @@ import {isNullOrEmpty, selectIngredientsIds} from "../../utils/utils";
 import Modal from "../modal/modal";
 import Loading from "../loading/loading";
 import DisplayError from "../error/display-error";
-import {orderSlice} from "../../services/reducers/orderSlice";
+import {createOrderSlice} from "../../services/reducers/create-order-slice";
 import {burgerConstructorSlice} from "../../services/reducers/burgerConstructorSlice";
 import {useAuth} from "../../hooks/useAuth";
 import {useHistory} from "react-router-dom";
@@ -36,7 +36,7 @@ const BurgerConstructorOrder = () => {
   }
 
   const close = () => {
-    dispatch(orderSlice.actions.close());
+    dispatch(createOrderSlice.actions.close());
     if (!isNullOrEmpty(order)) {
       dispatch(burgerConstructorSlice.actions.clear())
     }

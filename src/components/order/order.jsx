@@ -1,6 +1,6 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import css from './order.module.css';
-import {orderSelector, toOrderDate, toOrderStatus, totalPriceByIngredients} from "./lib";
+import {ingredientsSelector, orderSelector, toOrderDate, toOrderStatus} from "./lib";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
@@ -10,14 +10,7 @@ const Order = ({orderId}) => {
 
   const order = useSelector(orderSelector(orderId));
 
-  const items = useSelector(state => state.ingredients.items);
-
-  const ingredients = useMemo(
-    () => {
-      return items.filter(x => order.ingredients.includes(x._id))
-    }, [order, items]);
-
-  const price = totalPriceByIngredients(ingredients);
+  const {ingredients, totalPrice} = useSelector(ingredientsSelector(order.ingredients))
 
   return (
     <div className={css.order + ' p-6'}>
@@ -31,7 +24,7 @@ const Order = ({orderId}) => {
         <div className={css.order__main + ' mt-6'}>
           <Ingredients ingredients={ingredients}/>
           <span className={css.order__price + ' text text_type_digits-default text_color_primary'}>
-            {price} <CurrencyIcon type="primary"/>
+            {totalPrice} <CurrencyIcon type="primary"/>
           </span>
         </div>
       </div>

@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './icon-link.module.css';
 import {getIcon} from "./lib";
-import {NavLink, useRouteMatch} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 const IconLink = (props) => {
 
-  const {path} = useRouteMatch();
+  const location = useLocation();
+
+  const isActivePath = "/" + location.pathname.split('/')[1] === props.to;
 
   const style = [styles.iconlink, 'pl-5 pt-4 pr-5 pb-4 text_type_main-default']
 
@@ -15,13 +17,13 @@ const IconLink = (props) => {
   }
 
   const getClassName = (isActive) => {
-    if (isActive) return style.join(' ') + ' ' + styles.iconlink_active;
+    style.push(isActive ? 'text_color_primary' : 'text_color_inactive')
     return style.join(' ')
   }
 
   return (
     <NavLink to={props.to} className={getClassName} exact={props.exact}>
-      {getIcon(props.icon, path && path === props.to)}
+      {getIcon(props.icon, isActivePath)}
       {props.text}
     </NavLink>
   );

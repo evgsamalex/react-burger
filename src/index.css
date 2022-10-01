@@ -44,6 +44,7 @@ body {
 }
 
 .columns {
+  display: flex;
   flex-direction: column;
 }
 
@@ -73,6 +74,15 @@ body {
 
 .max_content {
   max-width: var(--max-content-width);
+}
+
+.flex-left {
+  justify-self: left;
+}
+
+.flex-center {
+  align-self: center;
+  justify-self: center;
 }
 
 

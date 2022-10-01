@@ -1,30 +1,43 @@
+import {createSelector} from "@reduxjs/toolkit";
+import {OrderStatus} from "../../../types/OrderStatus";
+
 export const toOrderDate = (date) => {
-  return new Date(date).toUTCString();
+  return new Date(date).toLocaleString('ru-Ru');
 }
 
 export const toOrderStatus = (status) => {
   switch (status) {
-    case 'created':
+    case OrderStatus.Created:
       return 'Создан';
-    case 'pending':
+    case OrderStatus.Pending:
       return 'Готовится';
-    case 'done':
+    case OrderStatus.Done:
       return 'Выполнен';
-    case 'cancel':
-      return 'Отменен';
     default:
       return '';
   }
 }
 
-export const totalPriceByIngredients = (ingredients) => {
-  console.log('totPrice')
-  return ingredients.reduce((partialSum, a) => partialSum + a.price, 0);
-}
+export const orderSelector = id => state => state.orders.orders[id];
 
-export const ingredientsSelector = (ids) => state => {
-  const {items} = state.ingredients;
-  return items.filter(x => ids.includes(x._id))
-}
+const ingredients = state => state.ingredients.items;
+const ingredientsIds = ids => state => ids;
 
-export const orderSelector = id => state => state.wsFeed.orders[id];
+export const ingredientsSelector = (ids) => createSelector(
+  [ingredients, ingredientsIds(ids)],
+  (items, ids) => {
+    console.log('ingredients selector');
+    const result = {};
+    let price = 0;
+    ids.forEach(id => {
+      if (!result[id]) {
+        result[id] = {ingredient: items.find(x => x._id === id), count: 0};
+      }
+      result[id].count++;
+      price += result[id].ingredient.price;
+    })
+    return {ingredients: result, totalPrice: price};
+  })
+
+export class ingredientsSelector1 {
+}
