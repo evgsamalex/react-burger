@@ -1,24 +1,7 @@
-import {WsType} from "../../types/wsType";
-import {wsFeedActions} from "../reducers/web-socket/ws-feed-slice";
-import {wsOrdersActions} from "../reducers/web-socket/ws-orders-slice";
-import {ordersSlice} from "../reducers/orders-slice";
-
-const config = {
-  [WsType.Feed]: {
-    wsActions: wsFeedActions,
-    dataActions: ordersSlice.actions
-  },
-  [WsType.Orders]: {
-    wsActions: wsOrdersActions,
-    dataActions: ordersSlice.actions
-  }
-}
-
-
-const webSocketMiddleware = (wsUrl, type, getToken = undefined) => {
+const webSocketMiddleware = (wsUrl, wsConfig, getToken = undefined) => {
   let socket = null;
 
-  const {wsActions, dataActions} = config[type];
+  const {wsActions, dataActions} = wsConfig;
 
   return store => next => action => {
     const {dispatch} = store;
@@ -54,12 +37,12 @@ const webSocketMiddleware = (wsUrl, type, getToken = undefined) => {
       socket.onmessage = event => {
         const data = JSON.parse(event.data);
 
-        dispatch(dataActions.onMessage({wsType: type, message: data}));
+        dispatch(dataActions.onMessage(data));
       }
     }
 
     if (wsActions.stop.match(action) && socket) {
-      dispatch(dataActions.wsStop(type))
+      dispatch(dataActions.wsStop())
 
       socket.close(1000);
       socket = null;

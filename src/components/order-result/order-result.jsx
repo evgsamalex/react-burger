@@ -1,5 +1,5 @@
 import React from 'react';
-import {orderPropTypes} from "../../utils/proptypes/order";
+import {orderPropTypes, orderResultPropTypes} from "../../utils/proptypes/order";
 import styles from './order-result.module.css'
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -19,7 +19,7 @@ const OrderResult = ({order}) => {
 };
 
 OrderResult.propTypes = {
-  order: orderPropTypes
+  order: orderResultPropTypes
 };
 
 export default OrderResult;

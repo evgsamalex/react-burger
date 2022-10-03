@@ -12,6 +12,7 @@ import wsFeedSlice from "./web-socket/ws-feed-slice";
 import ordersReducer from "./orders-slice";
 import {WsType} from "../../types/wsType";
 import wsOrdersSlice from "./web-socket/ws-orders-slice";
+import wsConfig from "./web-socket";
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
@@ -29,7 +30,7 @@ export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware => getDefaultMiddleware({serializableCheck: false})
-      .concat(webSocketMiddleware(config.wsPublicUrl, WsType.Feed))
-      .concat(webSocketMiddleware(config.wsPrivateUrl, WsType.Orders, config.tokenStorage.getAccessToken))
+      .concat(webSocketMiddleware(config.wsPublicUrl, wsConfig[WsType.Feed]))
+      .concat(webSocketMiddleware(config.wsPrivateUrl, wsConfig[WsType.Orders], config.tokenStorage.getAccessToken))
   })
 }
