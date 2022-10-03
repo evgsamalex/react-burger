@@ -1,0 +1,6 @@
+.orders {
+  display: flex;
+  height: 100%;
+  position: relative;
+  max-width: 840px;
+}

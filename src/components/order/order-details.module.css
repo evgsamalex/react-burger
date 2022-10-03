@@ -1,0 +1,41 @@
+.order__details {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+}
+
+.ingredients {
+  margin: 0;
+  padding: 0;
+  max-height: 305px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: calc(var(--offset-base-size) * 4);
+  flex: 1;
+}
+
+.ingredient {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--offset-base-size) * 4);
+}
+
+.ingredient__name {
+  flex: 1;
+}
+
+.ingredient__price {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ingredient__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+

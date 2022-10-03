@@ -1,0 +1,20 @@
+.ingredient {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--common-border-radius);
+  background: linear-gradient(63.18deg, #801AB3 0%, #4C4CFF 100%);
+  padding: 2px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+.ingredient__image {
+  background-color: var(--background-alt);
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 60px;
+}

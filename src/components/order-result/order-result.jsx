@@ -1,12 +1,12 @@
 import React from 'react';
-import {orderPropTypes} from "../../utils/proptypes/order";
-import styles from './order-details.module.css'
+import {orderPropTypes, orderResultPropTypes} from "../../utils/proptypes/order";
+import styles from './order-result.module.css'
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
 
-const OrderDetails = ({order}) => {
+const OrderResult = ({order}) => {
   return (
-    <div className={styles.order}>
+    <div className='center columns'>
       <h2 className={styles.order__number + ' text text_type_digits-large mt-15'}>{order.number}</h2>
       <h3 className='text text_type_main-medium mt-8 mb-15'>идентификатор заказа</h3>
       <CheckMarkIcon type="primary"/>
@@ -18,8 +18,8 @@ const OrderDetails = ({order}) => {
   );
 };
 
-OrderDetails.propTypes = {
-  order: orderPropTypes
+OrderResult.propTypes = {
+  order: orderResultPropTypes
 };
 
-export default OrderDetails;
+export default OrderResult;

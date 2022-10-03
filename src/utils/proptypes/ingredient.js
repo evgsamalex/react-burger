@@ -9,8 +9,8 @@ export const ingredientPropTypes = PropTypes.shape({
   carbohydrates: PropTypes.number,
   calories: PropTypes.number,
   price: PropTypes.number,
-  image: PropTypes.string,
-  image_mobile: PropTypes.string,
-  image_large: PropTypes.string,
+  image: PropTypes.string || '',
+  image_mobile: PropTypes.string || '',
+  image_large: PropTypes.string || '',
   __v: PropTypes.number
 })

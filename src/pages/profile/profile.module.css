@@ -13,3 +13,13 @@
   box-sizing: border-box;
   flex: 1;
 }
+
+.navigation {
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__text {
+  opacity: .4;
+}

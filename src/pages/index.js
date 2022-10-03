@@ -13,6 +13,9 @@ import ProtectedRoute from "../components/routing/protected-route";
 import NotAuthRoute from "../components/routing/not-auth-route";
 import Modal from "../components/modal/modal";
 import IngredientDetails from "../components/ingredient-details/ingredient-details";
+import Feed from "./feed/feed";
+import FeedDetails from "./feed/feed-details";
+import Order from "./profile/orders/order";
 
 export {Home, ForgotPassword, Ingredients, Login, Profile, Register, ResetPassword};
 
@@ -42,11 +45,20 @@ const Routing = () => {
         <NotAuthRoute path={routes.resetPassword} exact={true}>
           <ResetPassword/>
         </NotAuthRoute>
+        <ProtectedRoute path={routes.orderDetails} exact={true}>
+          <Order/>
+        </ProtectedRoute>
         <ProtectedRoute path={routes.profile}>
           <Profile/>
         </ProtectedRoute>
         <Route path={routes.ingredients} exact={true}>
           <Ingredients/>
+        </Route>
+        <Route path={routes.feed} exact={true}>
+          <Feed/>
+        </Route>
+        <Route path={routes.feedDetails} exact={true}>
+          <FeedDetails/>
         </Route>
         <Route>
           <NotFound404/>
@@ -55,11 +67,23 @@ const Routing = () => {
       {
         background &&
         (
-          <Route path={routes.ingredients}>
-            <Modal onClose={() => history.goBack()} title='Детали ингредиента'>
-              <IngredientDetails/>
-            </Modal>
-          </Route>
+          <>
+            <Route path={routes.ingredients}>
+              <Modal onClose={() => history.goBack()} title='Детали ингредиента'>
+                <IngredientDetails/>
+              </Modal>
+            </Route>
+            <Route path={routes.feedDetails}>
+              <Modal onClose={() => history.goBack()}>
+                <FeedDetails disposeFeed={false}/>
+              </Modal>
+            </Route>
+            <ProtectedRoute path={routes.orderDetails}>
+              <Modal onClose={() => history.goBack()}>
+                <Order disposeFeed={false}/>
+              </Modal>
+            </ProtectedRoute>
+          </>
         )
       }
     </>

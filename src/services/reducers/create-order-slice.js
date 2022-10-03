@@ -7,7 +7,7 @@ const initialState = {
   isOpen: false,
 }
 
-export const orderSlice = createSlice({
+export const createOrderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
@@ -30,4 +30,4 @@ export const orderSlice = createSlice({
   }
 })
 
-export default orderSlice.reducer;
+export default createOrderSlice.reducer;

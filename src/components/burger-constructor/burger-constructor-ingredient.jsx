@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import {ingredientPropTypes} from "../../utils/proptypes/ingredient";
-import styles from "./burger-constructor-ingredients.module.css";
+import styles from "./burger-constructor-ingredient.module.css";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch} from "react-redux";
 import {burgerConstructorSlice} from "../../services/reducers/burgerConstructorSlice";

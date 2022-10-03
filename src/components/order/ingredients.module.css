@@ -1,0 +1,37 @@
+.ingredients {
+  display: flex;
+}
+
+.ingredient {
+  margin-left: -13px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredient:first-child {
+  margin-left: 0;
+}
+
+.count::after {
+  content: '';
+  border-radius: 100px;
+  opacity: 0.6;
+  background-color: var(--background-alt);
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 64px;
+  height: 64px;
+  z-index: -1;
+}
+
+.count {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
