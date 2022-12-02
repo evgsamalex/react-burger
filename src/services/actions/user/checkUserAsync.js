@@ -8,6 +8,7 @@ export const checkUserAsync = () => async (dispatch) => {
       dispatch(authSlice.actions.setUser(response.user));
     }
   } catch (e) {
+    console.log(e);
     dispatch(authSlice.actions.logout())
   }
 }

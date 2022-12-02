@@ -6,9 +6,9 @@ import Form from "../../components/form/form";
 import {useForm} from "../../hooks/useForm";
 import {useAuth} from "../../hooks/useAuth";
 import Loading from "../../components/loading/loading";
-import {loginAsync} from "../../services";
 import {useDispatch} from "react-redux";
 import FormAnnotation from "../../components/form/form-annotation";
+import {loginAsync} from "../../services/actions/user/loginAsync";
 
 const Login = () => {
 

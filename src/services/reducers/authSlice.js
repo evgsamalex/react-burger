@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {logout} from "../../api";
 
 const initialState = {
   auth: false,
@@ -22,6 +23,7 @@ export const authSlice = createSlice({
     },
 
     setUser: (state, action) => {
+      console.log(action);
       state.isLoading = false;
       state.user = action.payload;
       state.auth = true;
