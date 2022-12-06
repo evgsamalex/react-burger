@@ -1,7 +1,7 @@
 export type TIngredient = {
   readonly _id: string,
   readonly name: string,
-  readonly type: TIngredientType,
+  readonly type: IngredientType,
   readonly proteins: number,
   readonly fat: number,
   readonly carbohydrates: number,
@@ -14,17 +14,23 @@ export type TIngredient = {
   _v: number
 }
 
-export type TIngredientType = "bun" | "sauce" | "main"
+export enum IngredientType {
+  Bun = "bun", Sauce = "sauce", Main = "main"
+}
 
 export type TCategory = {
-  readonly type: TIngredientType,
-  readonly name: string
+  type: IngredientType,
+  name: string
+}
+
+export type TBurgerConstructorItem = TIngredient & {
+  uuid: string
 }
 
 export type TBurgerConstructor = {
-  bun: TIngredient;
+  bun: TBurgerConstructorItem | null;
 
-  ingredients: Array<TIngredient>;
+  ingredients: Array<TBurgerConstructorItem>;
 }
 
 
@@ -46,7 +52,7 @@ export enum OrderStatus {
 export type TOrder = {
   _id: string,
   createdAt: string,
-  ingredients: ReadonlyArray<string>,
+  ingredients: Array<string>,
   name: string,
   number: number,
   status: OrderStatus,
@@ -54,5 +60,10 @@ export type TOrder = {
 }
 
 export type TCreateOrder = Omit<TOrder, "ingredients"> & {
-  ingredients: ReadonlyArray<TIngredient>
+  ingredients: Array<TIngredient>
+}
+
+export type TStateBase = {
+  isLoading: boolean,
+  error: string
 }

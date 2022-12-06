@@ -1,17 +1,17 @@
-import {TBurgerConstructor, TCategory, TIngredient, TIngredientType} from "../services/types/data";
+import {TBurgerConstructor, TCategory, TIngredient, IngredientType} from "../services/types/data";
 
-const categoryNames: Record<TIngredientType, string> = {
+const categoryNames: Record<IngredientType, string> = {
   bun: "Булки",
   main: "Начинки",
   sauce: "Соусы"
 }
 
-export const getCategoryName = (type: TIngredientType) => {
+export const getCategoryName = (type: IngredientType) => {
   const name = categoryNames[type];
   return name ? name : "undefined";
 }
 
-export const getCategories = (items: Array<TIngredient>): ReadonlyArray<TCategory> => {
+export const getCategories = (items: Array<TIngredient>): Array<TCategory> => {
   return items
     .map(item => item.type)
     .filter((value, index, self) => self.indexOf(value) === index)
@@ -21,11 +21,12 @@ export const getCategories = (items: Array<TIngredient>): ReadonlyArray<TCategor
 }
 
 export const selectIngredientsIds = (constructor: TBurgerConstructor): Array<string> => {
-  const result = [constructor.bun._id];
+  const result = constructor.bun ? [constructor.bun._id] : [];
   constructor.ingredients.forEach(x => {
     result.push(x._id);
   })
-  result.push(constructor.bun._id)
+  if (constructor.bun)
+    result.push(constructor.bun._id)
 
   return result;
 }

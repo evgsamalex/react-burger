@@ -17,8 +17,6 @@ const sendRequest = async <TDataKey extends string = '', TDataType = {}>({
                                                                          }: TRequest): Promise<TResponseBody<TDataKey, TDataType>> => {
 
   const request = async (): Promise<CustomResponse<TResponseBody<TDataKey, TDataType>>> => {
-    console.log(url);
-    console.log(headers);
     if (headers.has(HeadersKeys.Authorization)) {
       headers.set(HeadersKeys.Authorization, config.tokenStorage.getAccessToken());
     }

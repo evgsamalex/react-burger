@@ -5,10 +5,9 @@ import BurgerConstructorBun from "./burger-constructor-bun";
 import {burgerConstructorSlice} from "../../services/reducers/burgerConstructorSlice";
 import {useDrop} from "react-dnd";
 import BurgerConstructorIngredients from "./burger-constructor-ingredients";
-import {DragType} from "../../utils/constants";
-import {isNullOrEmpty} from "../../utils/utils";
 import BurgerConstructorOrder from "./burger-constructor-order";
 import * as uuid from "uuid";
+import {DragType} from "../../services/types/drag";
 
 const BurgerConstructor = () => {
 
@@ -28,7 +27,7 @@ const BurgerConstructor = () => {
 
   const style = isHover ? styles.ingredients + ' pt-25 ' + styles.ingredients_hover : styles.ingredients + ' pt-25';
 
-  if (isNullOrEmpty(bun) && ingredients.length === 0) {
+  if (!bun && ingredients.length === 0) {
     return (
       <div className={style} ref={dropTarget}>
         <div className='absolute center'>
