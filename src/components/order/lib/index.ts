@@ -42,7 +42,6 @@ export const ingredientsSelector = (ids: string[]) => createSelector(
       ingredients: {},
       totalPrice: 0
     };
-    let price = 0;
     ids.forEach((id: string) => {
       const ingredient = items.find(x => x._id === id);
       if (ingredient) {
@@ -53,5 +52,5 @@ export const ingredientsSelector = (ids: string[]) => createSelector(
         result.totalPrice += ingredient.price;
       }
     })
-    return {ingredients: result, totalPrice: price};
+    return result;
   })

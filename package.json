@@ -13,6 +13,7 @@
     "@types/react": "^17.0.48",
     "@types/react-dom": "^18.0.6",
     "@types/react-router-dom": "^5.3.3",
+    "@types/uuid": "^9.0.0",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.13.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

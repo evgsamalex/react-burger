@@ -15,8 +15,6 @@ type TBurgerIngredientProps = {
 }
 
 const BurgerIngredient: FC<TBurgerIngredientProps> = ({ingredient}) => {
-  console.log('render ingredient')
-
   const count = useAppSelector(state => ingredientCountSelector(state, ingredient._id));
 
   const location = useLocation<TLocationState>();

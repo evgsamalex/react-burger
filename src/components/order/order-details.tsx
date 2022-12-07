@@ -8,7 +8,7 @@ import {useAppSelector} from "../../services/hooks";
 
 const OrderDetails: FC<{ order: TOrder }> = ({order}) => {
 
-  const {ingredients, totalPrice} = useAppSelector(ingredientsSelector(order.ingredients));
+  const ingredients = useAppSelector(ingredientsSelector(order.ingredients));
 
   return (
     <div className={css.order__details}>
@@ -32,7 +32,7 @@ const OrderDetails: FC<{ order: TOrder }> = ({order}) => {
       <div className={css.ingredient__footer + ' mt-10'}>
         <span className={'text text_type_main-small text_color_inactive'}>{toOrderDate(order.createdAt)}</span>
         <span className={css.ingredient__price + ' text text_type_digits-default text_color_primary'}>
-            {totalPrice} <CurrencyIcon type="primary"/>
+            {ingredients.totalPrice} <CurrencyIcon type="primary"/>
           </span>
       </div>
     </div>

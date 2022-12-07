@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './burger-constructor.module.css'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import BurgerConstructorBun from "./burger-constructor-bun";
 import {burgerConstructorSlice} from "../../services/reducers/burgerConstructorSlice";
 import {useDrop} from "react-dnd";
@@ -8,26 +8,28 @@ import BurgerConstructorIngredients from "./burger-constructor-ingredients";
 import BurgerConstructorOrder from "./burger-constructor-order";
 import * as uuid from "uuid";
 import {DragType} from "../../services/types/drag";
+import {useAppSelector} from "../../services/hooks";
+import {TBurgerConstructorItem} from "../../services/types/data";
 
-const BurgerConstructor = () => {
+const BurgerConstructor: FC = () => {
 
-  const {bun, ingredients} = useSelector(store => store.burgerConstructor);
+  const {bun, ingredients} = useAppSelector(store => store.burgerConstructor);
 
   const dispatch = useDispatch();
 
   const [{isHover}, dropTarget] = useDrop({
     accept: DragType.INGREDIENT,
+    drop(item: TBurgerConstructorItem) {
+      dispatch(burgerConstructorSlice.actions.add({...item, uuid: uuid.v4()}))
+    },
     collect: monitor => ({
       isHover: monitor.isOver()
-    }),
-    drop(item) {
-      dispatch(burgerConstructorSlice.actions.add({...item, uuid: uuid.v4()}))
-    }
+    })
   })
 
   const style = isHover ? styles.ingredients + ' pt-25 ' + styles.ingredients_hover : styles.ingredients + ' pt-25';
 
-  if (!bun && ingredients.length === 0) {
+  if (!bun) {
     return (
       <div className={style} ref={dropTarget}>
         <div className='absolute center'>

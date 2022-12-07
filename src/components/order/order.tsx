@@ -9,7 +9,7 @@ const Order: FC<{ orderId: string }> = ({orderId}) => {
 
   const order = useAppSelector(orderSelector(orderId));
 
-  const {ingredients, totalPrice} = useAppSelector(ingredientsSelector(order.ingredients))
+  const ingredients = useAppSelector(ingredientsSelector(order.ingredients))
 
   return (
     <div className={css.order + ' p-6'}>
@@ -23,7 +23,7 @@ const Order: FC<{ orderId: string }> = ({orderId}) => {
         <div className={css.order__main + ' mt-6'}>
           <Ingredients ingredients={ingredients}/>
           <span className={css.order__price + ' text text_type_digits-default text_color_primary'}>
-            {totalPrice} <CurrencyIcon type="primary"/>
+            {ingredients.totalPrice} <CurrencyIcon type="primary"/>
           </span>
         </div>
       </div>

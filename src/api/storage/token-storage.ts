@@ -18,7 +18,7 @@ const setRefreshToken = (token: string): void => {
 
 const getRefreshToken = (): string => {
   const token = localStorage.getItem(refreshTokenKey);
-  return token ? token : '';
+  return token || '';
 }
 
 const setAccessToken = (token: string) => {
