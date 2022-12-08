@@ -1,0 +1,4 @@
+export enum DragType {
+  INGREDIENT = 'INGREDIENT',
+  CONSTRUCTOR = 'CONSTRUCTOR'
+}
